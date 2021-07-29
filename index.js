@@ -7,6 +7,7 @@ const notes = [
   "I want to rest",
   "I want to buy ferarri",
   "I want to buy shawarma and dash a beggaar",
+  "I want to read"
 ];
 server.get("/", (request, response) => {
   response.send("<h1>Hello Villagers</h1>");
