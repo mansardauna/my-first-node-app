@@ -1,0 +1,32 @@
+{
+  "name": "node_zero",
+  "version": "1.0.0",
+  "description": "my first node app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./",
+    "dev": "nodemon ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mansardauna/my-first-node-app.git"
+  },
+  "keywords": [
+    "express",
+    "server",
+    "node"
+  ],
+  "author": "Abdulrahman mansur <olaomansur@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mansardauna/my-first-node-app/issues"
+  },
+  "homepage": "https://github.com/mansardauna/my-first-node-app#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
