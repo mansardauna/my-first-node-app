@@ -1,47 +1,45 @@
-// const express = require("express");
-// const server = express();
-// const notes = [
-//   "I want to sleep",
-//   "I want to eat",
-//   "I want to make money",
-//   "I want to rest",
-//   "I want to buy ferarri",
-//   "I want to buy shawarma and dash a beggaar",
-//   "I want to read"
-// ];
-// server.get("/", (request, response) => {
-//   response.send("<h1>Hello Villagers</h1>");
-// });
-// server.get("/api/notes", (request, response) => {
-//   response.send({
-//     notes,
-//     total: notes.length,
-//   });
-// });
-// server.get("/api/notes/:index", (request, response) => {
-//   const index = parseInt(request.params.index);
-//   response.send(notes[index]);
-// });
-// const PORT = 3001;
-// server.listen(PORT, () => {
-//   console.log(`Server is running on http://localhost:${PORT}`);
-// });
-
-
-
 const express = require("express");
 const server = express();
-const persons = [
-  "laja code",
-  "muzzamil",
-  "mujib"
-];
+const persons =
+
+  [
+    {
+      "id": 1,
+      "name": "Arto Hellas",
+      "number": "040-123456"
+    },
+    {
+      "id": 2,
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523"
+    },
+    {
+      "id": 3,
+      "name": "Dan Abramov",
+      "number": "12-43-234345"
+    },
+    {
+      "id": 4,
+      "name": "Mary Poppendieck",
+      "number": "39-23-6423122"
+    }
+  ]
+
+const generateId = () => {
+  const maxId = persons.length > 0
+    ? Math.max(...persons.map(n => n.id))
+    : 0
+  return maxId + 1
+}
 
 server.get("/", (req, res) => {
-  res.send("<h1>People</h1>");
+  const respond = `<h1>phonebook has info of ${persons.length} people</h1>
+  <p>${new Date()}</p>`
+
+  res.send(respond);
 });
 
-server.get("/api/person", (req, res) => {
+server.get("/api/persons", (req, res) => {
   res.send({
     persons,
     total: persons.length,
@@ -53,7 +51,16 @@ server.get("/api/persons/index", (req, res) => {
   res.send(note[index]);
 });
 
-const PORT = 3002;
+server.delete("./api/person/id", (req, res) => {
+  const id = Number(req.params.id)
+  person = persons.filter(person.id !== id)
+
+  res.status(204).end()
+});
+
+
+
+const PORT = 3001;
 server.listen(PORT, () => {
   console.log(`server is running at http://localhost:${PORT}`)
 }
