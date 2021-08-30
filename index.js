@@ -1,7 +1,21 @@
 const express = require("express");
 const server = express();
-const persons =
+server.use(express.json());
+const morgan = require('morgan');
 
+morgan.token('custom', (req) => {
+  return JSON.stringify(req.body)
+})
+server.use(
+  morgan(
+    ':method :url :status :res[content-length] - :response-time ms :custom'
+  )
+)
+
+const cors = require('cors');
+server.use(cors());
+
+const persons =
   [
     {
       "id": 1,
@@ -24,14 +38,6 @@ const persons =
       "number": "39-23-6423122"
     }
   ]
-
-const generateId = () => {
-  const maxId = persons.length > 0
-    ? Math.max(...persons.map(n => n.id))
-    : 0
-  return maxId + 1
-}
-
 server.get("/", (req, res) => {
   const respond = `<h1>phonebook has info of ${persons.length} people</h1>
   <p>${new Date()}</p>`
@@ -40,10 +46,7 @@ server.get("/", (req, res) => {
 });
 
 server.get("/api/persons", (req, res) => {
-  res.send({
-    persons,
-    total: persons.length,
-  })
+  res.json(persons)
 })
 
 server.get("/api/persons/index", (req, res) => {
@@ -60,7 +63,7 @@ server.delete("./api/person/id", (req, res) => {
 
 
 
-const PORT = 3001;
+const PORT = 3030;
 server.listen(PORT, () => {
   console.log(`server is running at http://localhost:${PORT}`)
 }
