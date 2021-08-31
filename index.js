@@ -44,12 +44,6 @@ const persons =
       "number": "39-6423122"
     }
   ]
-server.get("/", (req, res) => {
-  const respond = `<h1>phonebook has info of ${persons.length} people</h1>
-  <p>${new Date()}</p>`
-
-  res.send(respond);
-});
 
 server.get("/api/persons", (req, res) => {
   res.json(persons)
