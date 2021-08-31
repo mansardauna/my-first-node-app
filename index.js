@@ -36,6 +36,11 @@ const persons =
       "id": 4,
       "name": "Mary Poppendieck",
       "number": "39-23-6423122"
+    },
+    {
+      "id": 5,
+      "name": "Mary Poppe",
+      "number": "39-6423122"
     }
   ]
 server.get("/", (req, res) => {
@@ -63,8 +68,7 @@ server.delete("./api/person/id", (req, res) => {
 
 
 
-const PORT = 3030;
+const PORT = process.env.PORT || 3030
 server.listen(PORT, () => {
-  console.log(`server is running at http://localhost:${PORT}`)
-}
-);
+  console.log(`Server running on port ${PORT}`)
+})
