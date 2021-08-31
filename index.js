@@ -1,6 +1,7 @@
 const express = require("express");
 const server = express();
 server.use(express.json());
+server.use(express.static('build'))
 const morgan = require('morgan');
 
 morgan.token('custom', (req) => {
