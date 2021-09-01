@@ -49,19 +49,33 @@ server.get("/api/persons", (req, res) => {
   res.json(persons)
 })
 
-server.get("/api/persons/index", (req, res) => {
-  const index = parseInt(req.params.index);
-  res.send(note[index]);
+server.get("/api/persons/:id", (req, res) => {
+  const id = req.params.id;
+  const result = person.find((person) => person.id == id);
+  if (result) {
+    res.status(200).json(result);
+  }
+  else {
+    res.status(400).end();
+  }
 });
 
-server.delete("./api/person/id", (req, res) => {
-  const id = Number(req.params.id)
-  person = persons.filter(person.id !== id)
 
-  res.status(204).end()
-});
+server.delete('/api/persons/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const person = persons.filter((person) => person.id != id);
+  res.json(person);
 
-
+}
+);
+server.post('/persons/:id', (req, res) => {
+  const person = req.body;
+  console.log(person)
+  if (!person.name || !person.number) {
+    return res.status(404).send("missin params")
+  };
+  //   const nameExist = person.find((p) => p.name ==person.name);
+})
 
 const PORT = process.env.PORT || 3030
 server.listen(PORT, () => {
