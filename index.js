@@ -7,7 +7,6 @@ const morgan = require('morgan');
 const Person = require('./mongos')
 require('dotenv').config();
 
-// dotenv.config();
 app.use(cors())
 morgan.token('custom', (req) => {
   return 'POST' === req.method ? JSON.stringify(req.body) : ' '
